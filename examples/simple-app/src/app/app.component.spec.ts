@@ -42,4 +42,13 @@ describe('AppComponent', () => {
     app.onClickFillName();
     expect(simpleDataService.getName).toHaveBeenCalled();
   });
+
+  it('should make DOM changes', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h1.display-1 i')).toHaveClass('text-danger');
+    fixture.componentInstance.onClickFillName();
+    fixture.detectChanges();
+    expect(compiled.querySelector('h1.display-1 i')).toHaveClass('text-warning');
+  });
 });
