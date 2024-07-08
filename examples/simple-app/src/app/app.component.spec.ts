@@ -51,4 +51,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(compiled.querySelector('h1.display-1 i')).toHaveClass('text-warning');
   });
+
+  it('should have an invalid form when required fields are empty' , () => {
+    expect(app.simpleFormGroup.valid).toBeFalse();
+  });
+
+  it('should have a valid form when required fields are filled' , () => {
+    app.simpleFormGroup.setValue({ name: 'foo' });
+    expect(app.simpleFormGroup.valid).toBeTrue();
+  });
 });
