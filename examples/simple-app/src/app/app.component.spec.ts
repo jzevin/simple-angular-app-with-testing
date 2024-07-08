@@ -37,4 +37,9 @@ describe('AppComponent', () => {
     app.getRandomName();
     expect(simpleDataService.getName).toHaveBeenCalled();
   });
+
+  it('should call onClickFillName', () => {
+    app.onClickFillName();
+    expect(simpleDataService.getName).toHaveBeenCalled();
+  });
 });
