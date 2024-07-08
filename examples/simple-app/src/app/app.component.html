@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row h-100">
+    <div class="col d-flex flex-column align-items-center justify-content-center">
+      <div class="row">
+        <div class="col">
+          <h1 class="display-1">
+            @if(simpleFormGroup.valid) {
+            <i class="bi bi-emoji-smile-fill text-warning"></i>
+            } @else {
+            <i class="bi bi-emoji-frown-fill text-danger"></i>
+            }
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="simpleFormGroup" class="mt-3">
+            <label for="name" class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <input class="form-control" formControlName="name" placeholder="name" type="text" />
+                  @if (simpleFormGroup.valid) {
+                  <button class="btn btn-outline-secondary" (click)="simpleFormGroup.reset()"><i
+                      class="bi bi-x"></i></button>
+                  }
+                  <button class="btn btn-outline-primary" (click)="onClickFillName()" [disabled]="isLoading"
+                    type="button" id="button-addon2">
+                    @if (isLoading) {
+                    <span class="spinner-border spinner-border-sm"></span>
+                    } @else {
+                    <i class="bi bi-magic"></i>
+                    }
+                  </button>
+                </div>
+              </div>
+            </label>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="text-center mt-3"><span>simple form isValid:</span> <span
+              [ngClass]="simpleFormGroup.valid ? 'text-success':'text-danger'"> {{simpleFormGroup.valid}}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
