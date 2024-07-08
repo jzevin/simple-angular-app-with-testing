@@ -1,4 +1,4 @@
-# TestingPresentation
+# A Simple Angular App example with unit and e2e tests
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
 
