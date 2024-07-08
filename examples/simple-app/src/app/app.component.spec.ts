@@ -32,4 +32,9 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
+
+  it('should call getRandomName', () => {
+    app.getRandomName();
+    expect(simpleDataService.getName).toHaveBeenCalled();
+  });
 });
