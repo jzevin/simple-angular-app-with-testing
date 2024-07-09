@@ -114,4 +114,24 @@ test.describe('Simple App', () => {
     // Expect an element "to have class".
     await expect(headingIcon).toHaveClass('bi bi-emoji-frown-fill text-danger');
   });
+
+  test('clicking on the magic icon should call the api', async ({ page }) => {
+    await page.route('*/**/api/names', async (route) => {
+      await route.fulfill({ json: [{ name: 'jz' }] });
+    });
+    await page.goto('http://localhost:4200/');
+
+    const headingIcon = await page.getByRole('heading').first().locator('i');
+    const nameInput = await page.getByPlaceholder('name');
+
+    await page.getByRole('button').locator('i.bi-magic').click();
+
+    // Expect an element "to have class".
+    await expect(headingIcon).toHaveClass(
+      'bi bi-emoji-smile-fill text-warning'
+    );
+
+    // Expect an element "to have text".
+    await expect(nameInput).toHaveValue('jz');
+  });
 });
