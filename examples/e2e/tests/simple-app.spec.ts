@@ -8,13 +8,17 @@ test.describe('Simple App', () => {
     await expect(page).toHaveTitle(/SimpleApp/);
   });
 
-  test('face icon is visible and has the correct initial classes', async ({ page }) => {
+  test('face icon is visible and has the correct initial classes', async ({
+    page,
+  }) => {
     await page.goto('http://localhost:4200/');
 
+    const headingIcon = await page.getByRole('heading').first().locator('i');
+
     // Expect an element "to be visible".
-    await expect(page.locator('i').first()).toBeVisible();
+    await expect(headingIcon).toBeVisible();
 
     // Expect an element "to have class".
-    await expect(page.locator('i').first()).toHaveClass('bi-emoji-frown-fill');
+    await expect(headingIcon).toHaveClass('bi bi-emoji-frown-fill text-danger');
   });
 });
