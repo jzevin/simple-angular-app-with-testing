@@ -21,4 +21,30 @@ test.describe('Simple App', () => {
     // Expect an element "to have class".
     await expect(headingIcon).toHaveClass('bi bi-emoji-frown-fill text-danger');
   });
+
+  test("clicking on the magic icon changes the face's class", async ({
+    page,
+  }) => {
+    await page.goto('http://localhost:4200/');
+
+    const headingIcon = await page.getByRole('heading').first().locator('i');
+    await page.getByRole('button').locator('i.bi-magic').click();
+
+    // Expect an element "to have class".
+    await expect(headingIcon).toHaveClass(
+      'bi bi-emoji-smile-fill text-warning'
+    );
+  });
+
+  test('clicking on the magic icon makes the clear button visible', async ({
+    page,
+  }) => {
+    await page.goto('http://localhost:4200/');
+
+    const clearButton = await page.getByRole('button').locator('i.bi-x');
+    await page.getByRole('button').locator('i.bi-magic').click();
+
+    // Expect an element "to be visible".
+    await expect(clearButton).toBeVisible();
+  });
 });
